@@ -144,8 +144,9 @@ export default function TaskModal({
             <label className={classes.label}>Title</label>
             <input
               className={classes.input}
+              name='title'
               value={formData.title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={handleChange}
             />
           </div>
 
@@ -153,8 +154,9 @@ export default function TaskModal({
             <label className={classes.label}>Description</label>
             <textarea
               className={classes.textarea}
+              name='description'
               value={formData.description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={handleChange}
             />
           </div>
 

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import classes from './ProjectsPreview.module.css';
 import { useUsers } from '../../../hooks/useUser';
 import useAuth from '../../../hooks/Authentication';
+import { getProjectStatus } from '../../../utils/projectStatus';
 
 export default function ProjectsPreview({ projects, tasks = [] }) {
   const navigate = useNavigate();
@@ -46,8 +47,8 @@ export default function ProjectsPreview({ projects, tasks = [] }) {
       const progressA = getProjectProgress(a.id, tasks);
       const progressB = getProjectProgress(b.id, tasks);
 
-      const statusA = progressA === 100 ? 'Completed' : a.status;
-      const statusB = progressB === 100 ? 'Completed' : b.status;
+      const statusA = getProjectStatus(a.id, tasks);
+      const statusB = getProjectStatus(b.id, tasks);
 
       return (order[statusA] || 99) - (order[statusB] || 99);
     });
@@ -125,8 +126,7 @@ export default function ProjectsPreview({ projects, tasks = [] }) {
           const progress = getProjectProgress(p.id, tasks);
           const animatedProgress = useCountUp(progress);
           const isCompleted = progress === 100;
-          const derivedStatus = progress === 100 ? 'Completed' : p.status;
-
+          const derivedStatus = getProjectStatus(p.id, tasks);
           return (
             <div
               key={p.id}

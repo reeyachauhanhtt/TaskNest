@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -18,6 +18,42 @@ export default function LoginForm() {
 
   const rules = validatePassword(passwordValue);
   const isValidPassword = isPasswordValid(rules);
+
+  const [emailValue, setEmailValue] = useState('');
+  const [emailChecking, setEmailChecking] = useState(false);
+
+  useEffect(() => {
+    if (!emailValue) return;
+
+    const timer = setTimeout(async () => {
+      setEmailChecking(true);
+
+      try {
+        const res = await fetch(
+          `http://localhost:3000/users?email=${emailValue}`,
+        );
+        const data = await res.json();
+
+        if (data.length === 0) {
+          setErrors((prev) => ({
+            ...prev,
+            email: 'User not found',
+          }));
+        } else {
+          setErrors((prev) => ({
+            ...prev,
+            email: '',
+          }));
+        }
+      } catch (err) {
+        console.error(err);
+      }
+
+      setEmailChecking(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [emailValue]);
 
   function validate(name, value) {
     let error = '';
@@ -112,7 +148,12 @@ export default function LoginForm() {
 
         <p>
           <label htmlFor='email'>Email</label>
-          <input name='email' placeholder='Email' onBlur={handleBlur} />
+          <input
+            name='email'
+            placeholder='Email'
+            onBlur={handleBlur}
+            onChange={(e) => setEmailValue(e.target.value)}
+          />
           {errors.email && (
             <span className={classes.error}>
               {errors.email}— create an account if you’re new

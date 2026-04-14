@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { useUsers } from '../../../hooks/useUser';
 import useAuth from '../../../hooks/Authentication';
+import { getProjectStatus } from '../../../utils/projectStatus';
 
 export default function ProjectsTable({
   projects,
@@ -45,7 +46,9 @@ export default function ProjectsTable({
   }
 
   function getProjectProgress(projectId, tasks) {
-    const projectTasks = tasks.filter((t) => t.projectId == projectId);
+    const projectTasks = tasks.filter(
+      (t) => String(t.projectId) === String(projectId),
+    );
 
     if (projectTasks.length === 0) return 0;
 
@@ -99,9 +102,12 @@ export default function ProjectsTable({
         const animatedProgress = useCountUp(progress);
 
         const isCompleted = progress === 100;
-        const displayStatus = isCompleted ? 'Completed' : p.status;
-        // const derivedStatus = progress === 100 ? 'Completed' : p.status;
+        // const displayStatus = isCompleted ? 'Completed' : p.status;
 
+        const displayStatus = getProjectStatus(p.id, tasks);
+
+        // const derivedStatus = progress === 100 ? 'Completed' : p.status;
+        // console.log(p.title, p.status, progress);
         // console.log(p.title, p.dueDate, getDueStatus(p.dueDate));
 
         return (

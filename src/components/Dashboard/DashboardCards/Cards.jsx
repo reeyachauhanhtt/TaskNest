@@ -1,13 +1,20 @@
 import classes from './Cards.module.css';
+import { getProjectStatus } from '../../../utils/projectStatus';
 
 export default function Cards({ projects, tasks }) {
   const totalTasks = tasks.length;
 
-  const inProgress = projects.filter((p) => p.status === 'In Progress').length;
+  const inProgress = projects.filter(
+    (p) => getProjectStatus(p.id, tasks) === 'In Progress',
+  ).length;
 
-  const completed = projects.filter((p) => p.status === 'Completed').length;
+  const completed = projects.filter(
+    (p) => getProjectStatus(p.id, tasks) === 'Completed',
+  ).length;
 
-  const activeProjects = projects.filter((p) => p.status === 'Active').length;
+  const activeProjects = projects.filter(
+    (p) => getProjectStatus(p.id, tasks) === 'Active',
+  ).length;
 
   const totalProjects = projects.length;
 
