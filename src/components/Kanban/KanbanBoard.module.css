@@ -1,0 +1,52 @@
+.board {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.column {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px;
+    transition: all 0.2s ease;
+}
+
+.columnHeader {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.count {
+    background: var(--surface);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.addTask {
+    margin-top: 10px;
+    padding: 6px;
+    border: none;
+    background: transparent;
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.addTask:hover {
+    text-decoration: underline;
+}
+
+.columnDraggingOver {
+    background: rgba(180, 83, 9, 0.08);
+    transform: scale(1.02);
+}

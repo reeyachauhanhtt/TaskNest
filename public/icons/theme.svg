@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+  <!-- Circle split — left half sun, right half moon -->
+  <circle cx="12" cy="12" r="10" fill="#292524" stroke="#B45309" stroke-width="1.5"/>
+  <!-- Left half: sun rays side (copper) -->
+  <path d="M12 2 A10 10 0 0 0 12 22 Z" fill="#B45309"/>
+  <!-- Sun dot on copper half -->
+  <circle cx="8" cy="12" r="3" fill="#FEF3C7"/>
+  <!-- Moon crescent on dark half -->
+  <path d="M16 8 C13.5 8.5 12 10.5 12 12 C12 13.5 13.5 15.5 16 16 C14 16.5 11.5 15 10.5 12 C9.5 9 11 6.5 16 8 Z" fill="#D97706"/>
+  <!-- Divider line -->
+  <line x1="12" y1="2" x2="12" y2="22" stroke="#1C1917" stroke-width="1"/>
+</svg>

@@ -1,0 +1,67 @@
+.wrapper {
+    padding: 1.5rem;
+}
+
+.wrapper h2 {
+    margin-bottom: 0.3rem;
+}
+
+.wrapper p {
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+
+.toggle {
+    width: 70px;
+    height: 36px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+
+    background: var(--text);
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 4px;
+}
+
+
+.toggle.active {
+    background: var(--primary);
+}
+
+.icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+
+    transition: transform 0.3s ease;
+}
+
+.toggle.active .icon {
+    transform: translateX(34px);
+}

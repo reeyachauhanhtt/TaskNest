@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
+
+/* Root — full-viewport warm brown bg*/
+.root {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: #b07050; */
+    background: radial-gradient(circle at 20% 20%,
+            rgba(180, 83, 9, 0.25),
+            transparent 40%),
+        radial-gradient(circle at 80% 70%,
+            rgba(245, 158, 11, 0.18),
+            transparent 50%),
+        linear-gradient(135deg,
+            #1a1714 0%,
+            #292524 40%,
+            #44403c 100%);
+    /* background-blend-mode: overlay; */
+    padding: 32px 24px;
+    font-family: 'Nunito', system-ui, sans-serif;
+}
+
+/* Card — outer split container */
+.card {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 680px;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #f2ede8;
+    box-shadow:
+        0 2px 0 rgba(255, 255, 255, 0.25) inset,
+        0 40px 100px rgba(60, 30, 10, 0.35);
+}
+
+/*  LEFT — Form panel (light cream) */
+.left {
+    flex: 0 0 42%;
+    background: #f2ede8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 52px 48px 48px;
+    position: relative;
+}
+
+.brand {
+    display: none;
+}
+
+.title {
+    font-family: 'Nunito', system-ui, sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1208;
+    line-height: 1.15;
+    margin: 0 0 6px;
+    letter-spacing: -0.3px;
+}
+
+.subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: #7a6050;
+    margin: 0 0 28px;
+}
+
+.formBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/*  Strip inner form card chrome  */
+.formBody :global(.form) {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    font-family: 'Nunito', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Heading inside form */
+.formBody :global(.heading) {
+    display: none;
+}
+
+/* Labels */
+.formBody :global(.form) label {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #7a6050;
+    margin-bottom: 5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: block;
+}
+
+/* Field paragraphs and divs */
+.formBody :global(.form) p,
+.formBody :global(.form) .field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+}
+
+/* Inputs */
+.formBody :global(.form) input,
+.formBody :global(.form) select {
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1.5px solid #e0d4c4;
+    background: #ffffff;
+    color: #1a1208;
+    font-family: 'Nunito', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.formBody :global(.form) input::placeholder {
+    color: #bba898;
+    font-weight: 400;
+}
+
+.formBody :global(.form) input:focus,
+.formBody :global(.form) select:focus {
+    outline: none;
+    border-color: #a0604a;
+    box-shadow: 0 0 0 3px rgba(160, 96, 74, 0.12);
+}
+
+/* Submit button — full width, rounded, mauve/rosewood */
+.formBody :global(.action) {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formBody :global(.action) button[type='submit'] {
+    width: 100%;
+    background: #9c5f5f;
+    color: #ffffff;
+    border-radius: 12px;
+    font-family: 'Nunito', system-ui, sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 13px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 18px rgba(156, 95, 95, 0.35);
+}
+
+.formBody :global(.action) button[type='submit']:hover {
+    background: #874e4e;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(156, 95, 95, 0.45);
+}
+
+.formBody :global(.action) button[type='submit']:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Cancel button — hide on auth forms for clean look */
+.formBody :global(.action) button[type='button'] {
+    display: none;
+}
+
+/* Social icons row */
+.formBody :global(.socials) {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.formBody :global(.socials) button {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    border: 1.5px solid #e0d4c4;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-size: 20px;
+}
+
+.formBody :global(.socials) button:hover {
+    border-color: #9c5f5f;
+    box-shadow: 0 2px 10px rgba(156, 95, 95, 0.15);
+}
+
+/* Switch link */
+.formBody :global(.account) {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 13px;
+    color: #7a6050;
+}
+
+.formBody :global(.account) a {
+    color: #9c5f5f;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 3px;
+}
+
+.formBody :global(.account) a:hover {
+    text-decoration: underline;
+}
+
+/* Error text */
+.formBody :global(.error) {
+    color: #c0392b;
+    font-size: 11.5px;
+    margin-top: 3px;
+}
+
+/* Password rules */
+.formBody :global(.passwordRules) {
+    margin-top: 6px;
+    font-size: 11.5px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.formBody :global(.valid) {
+    color: #16a34a;
+}
+
+.formBody :global(.invalid) {
+    color: #bba898;
+}
+
+/* RIGHT — Illustration panel */
+.right {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    margin: 8px 8px 8px 0;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(to top,
+            rgba(12, 6, 2, 0.72) 0%,
+            rgba(12, 6, 2, 0.10) 50%,
+            transparent 100%);
+    pointer-events: none;
+}
+
+.caption {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(245, 236, 215, 0.9);
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+    .right {
+        display: none;
+    }
+
+    .left {
+        flex: 1;
+        padding: 40px 28px;
+    }
+
+    .card {
+        max-width: 440px;
+    }
+}
+
+/*  Social sign-in row */
+.socialRow {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.socialBtn {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    border: 1.5px solid #e0d4c4;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    color: #1a1208;
+}
+
+.socialBtn:hover {
+    border-color: #9c5f5f;
+    box-shadow: 0 4px 14px rgba(156, 95, 95, 0.15);
+    transform: translateY(-1px);
+}
+
+.socialBtnActive {
+    background: #ffffff;
+    border-color: #d0c0b0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}

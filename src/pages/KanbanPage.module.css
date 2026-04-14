@@ -1,0 +1,102 @@
+.container {
+    padding: 20px;
+}
+
+.kanbanHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.left {
+    flex: 1;
+}
+
+.center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.projectDropdown {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    cursor: pointer;
+
+    background: var(--card);
+    color: var(--text);
+}
+
+.projectDropdown:focus {
+    border-color: var(--primary);
+}
+
+.projectDropdown:hover {
+    border-color: var(--primary);
+}
+
+.projectDropdown option {
+    background: var(--card);
+    color: var(--text);
+}
+
+.addTaskBtn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.addTaskBtn:hover {
+    opacity: 0.9;
+}
+
+.projectTitle {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.iconBtn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    margin-right: 7px;
+
+    border: 1px solid var(--border);
+    background: var(--surface);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    color: var(--text);
+}
+
+.iconBtn:hover {
+    background: var(--card);
+    border-color: var(--primary);
+    transform: scale(1.05);
+}
+
+.iconBtn:active {
+    transform: scale(0.96);
+}
+
+.iconBtn:hover {
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15);
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+  <!-- Door frame -->
+  <path d="M10 4 L4 4 C3 4 2 5 2 6 L2 18 C2 19 3 20 4 20 L10 20" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Arrow shaft -->
+  <line x1="9" y1="12" x2="22" y2="12" stroke="#B45309" stroke-width="2" stroke-linecap="round"/>
+  <!-- Arrow head -->
+  <path d="M17 7.5 L22 12 L17 16.5" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Door handle dot -->
+  <circle cx="8" cy="12" r="1.5" fill="#D97706"/>
+</svg>

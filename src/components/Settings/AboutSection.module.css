@@ -1,0 +1,41 @@
+.wrapper {
+    padding: 1.5rem;
+}
+
+.wrapper h2 {
+    margin-bottom: 0.3rem;
+}
+
+.wrapper p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+
+    transition: all 0.25s ease;
+}
+
+.card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+    margin-bottom: 0.4rem;
+}
+
+.card ul {
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.card li {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+}

@@ -1,0 +1,199 @@
+/* WRAPPER */
+.wrapper {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    overflow-y: auto;
+    max-height: 100%;
+    padding-right: 4px;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon {
+    width: 42px;
+    height: 42px;
+    background: var(--surface);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-size: 18px;
+}
+
+/* DIVIDER */
+.divider {
+    height: 1px;
+    background: var(--border);
+    margin: 16px 0;
+}
+
+/* SECTION TITLE */
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    margin: 20px 0 10px;
+    color: var(--text-secondary);
+}
+
+.sectionTitle::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+/* CARD */
+.card {
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    width: 100%;
+}
+
+/* ROW */
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+}
+
+.rowLast {
+    border-bottom: none;
+}
+
+.rowText {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.rowLabel {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.rowDesc {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* TOGGLE */
+.toggle {
+    width: 44px;
+    height: 24px;
+    border-radius: 999px;
+    background: var(--border);
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+
+.toggleOn {
+    background: var(--primary);
+}
+
+.thumb {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggleOn .thumb {
+    transform: translateX(20px);
+}
+
+/* QUIET HOURS TIME ROW */
+.timeRow {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    padding: 12px 18px 16px;
+    border-top: 1px solid var(--border);
+}
+
+.timeField {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.timeField label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.timeInput {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.timeInput:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.timeSep {
+    font-size: 16px;
+    color: var(--text-secondary);
+    padding-bottom: 8px;
+}
+
+/* SAVE BUTTON */
+.save {
+    margin-top: 20px;
+    background: var(--primary);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.save:hover {
+    opacity: 0.9;
+}
+
+.save:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* SUCCESS */
+.success {
+    margin-top: 10px;
+    color: #22c55e;
+    font-size: 14px;
+}

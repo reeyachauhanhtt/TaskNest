@@ -1,0 +1,111 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+
+.searchInput {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    outline: none;
+    width: 180px;
+}
+
+.searchInput::placeholder {
+    color: var(--text-secondary);
+}
+
+.searchInput:focus {
+    border-color: var(--primary);
+}
+
+.filter {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    outline: none;
+}
+
+.filter:hover {
+    border-color: var(--primary);
+}
+
+.filter:focus {
+    border-color: var(--primary);
+}
+
+.filter option {
+    background: var(--card);
+    color: var(--text);
+}
+
+.actionsRight {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+/* .iconBtn {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    margin: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.iconBtn:hover {
+    transform: scale(1.1);
+    border-color: var(--primary);
+} */
+
+.iconBtn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+
+    border: 1px solid var(--border);
+    background: var(--surface);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    color: var(--text);
+}
+
+.iconBtn:hover {
+    background: var(--card);
+    border-color: var(--primary);
+    transform: scale(1.05);
+}
+
+.iconBtn:active {
+    transform: scale(0.96);
+}
+
+.iconBtn:hover {
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15);
+}

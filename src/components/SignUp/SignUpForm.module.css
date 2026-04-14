@@ -1,0 +1,146 @@
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 16px;
+    width: 100%;
+}
+
+/* Full-width items */
+.heading,
+.select,
+.action,
+.account {
+    grid-column: span 2;
+}
+
+/* Last 2 fields (password pair) — full width */
+.form .field:nth-last-child(-n + 3) {
+    grid-column: span 2;
+}
+
+/* Heading — hidden, comes from AuthLayout */
+.heading {
+    display: none;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.select {
+    display: flex;
+    flex-direction: column;
+}
+
+.form label {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #7a6050;
+    margin-bottom: 5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.form input,
+.form select {
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1.5px solid #e0d4c4;
+    background: #ffffff;
+    color: #1a1208;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.form input::placeholder {
+    color: #bba898;
+}
+
+.form input:focus,
+.form select:focus {
+    outline: none;
+    border-color: #a0604a;
+    box-shadow: 0 0 0 3px rgba(160, 96, 74, 0.12);
+}
+
+.action {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.action button[type='submit'] {
+    width: 100%;
+    background: #9c5f5f;
+    color: #ffffff;
+    border-radius: 12px;
+    font-size: 14.5px;
+    font-weight: 600;
+    padding: 13px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 18px rgba(156, 95, 95, 0.35);
+    font-family: inherit;
+}
+
+.action button[type='submit']:hover {
+    background: #874e4e;
+    transform: translateY(-1px);
+}
+
+.action button[type='submit']:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Cancel — hidden */
+.action button[type='button'] {
+    display: none;
+}
+
+.account {
+    text-align: center;
+    font-size: 13px;
+    color: #7a6050;
+    margin-top: 4px;
+}
+
+.account a {
+    color: #9c5f5f;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 3px;
+}
+
+.account a:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: #c0392b;
+    font-size: 11.5px;
+    margin-top: 3px;
+}
+
+/* Single-column on mobile */
+@media (max-width: 500px) {
+    .form {
+        grid-template-columns: 1fr;
+    }
+
+    .heading,
+    .select,
+    .action,
+    .account,
+    .form .field:nth-last-child(-n + 3) {
+        grid-column: span 1;
+    }
+}

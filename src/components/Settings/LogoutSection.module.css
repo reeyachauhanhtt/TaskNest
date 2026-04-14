@@ -1,0 +1,107 @@
+.wrapper {
+    padding: 1.5rem;
+}
+
+.wrapper h2 {
+    margin-bottom: 0.3rem;
+}
+
+.wrapper p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.3rem;
+    margin-bottom: 1rem;
+
+    transition: all 0.25s ease;
+}
+
+.card:hover {
+    border-color: var(--primary);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.logoutBtn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.logoutBtn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.danger {
+    border-color: #ef4444;
+}
+
+.deleteBtn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+
+    background: #ef4444;
+    color: white;
+    cursor: pointer;
+
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.deleteBtn:hover {
+    background: #dc2626;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    background: var(--card);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    padding: 0.8rem 1.2rem;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+    animation: slideUp 0.3s ease;
+    z-index: 10000;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

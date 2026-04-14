@@ -1,0 +1,84 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+    padding: 1rem;
+}
+
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+
+.search {
+    width: 260px;
+    padding: 10px 14px;
+
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+
+    outline: none;
+}
+
+.search:focus {
+    border-color: #b45309;
+    box-shadow: 0 0 0 2px rgba(180, 83, 9, 0.2);
+}
+
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.user {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+
+}
+
+.button {
+    background: #b45309;
+    color: white;
+    border: none;
+
+    padding: 8px 14px;
+    border-radius: 8px;
+
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.button:hover {
+    background: #9a3f06;
+}
+
+.avatarWrapper {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #b45309;
+}
+
+.avatarImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatarFallback {
+    color: white;
+    font-weight: bold;
+}

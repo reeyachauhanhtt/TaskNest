@@ -1,0 +1,85 @@
+.sidebar {
+    width: 240px;
+    padding: 0 16px 0 0;
+    border-right: 1px solid #e5ddd3;
+    position: sticky;
+    top: 0;
+    height: 100%;
+}
+
+.heading {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.sub {
+    font-size: 13px;
+    opacity: 0.6;
+    color: #9c8f84;
+    margin-bottom: 16px;
+}
+
+.section {
+    margin-bottom: 18px;
+}
+
+.sectionTitle {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 8px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+}
+
+.item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.active {
+    background: #ead9c5;
+    color: #b45309;
+}
+
+.active .icon {
+    opacity: 1;
+}
+
+.badge {
+    background: #e53935;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.danger {
+    color: #e53935;
+}
+
+.danger:hover {
+    background: rgba(229, 57, 53, 0.08);
+}
