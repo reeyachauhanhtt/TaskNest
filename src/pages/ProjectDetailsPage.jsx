@@ -12,7 +12,7 @@ import TaskCommentsModal from '../components/Tasks/TaskCommentsModal';
 import { isProjectMember, isProjectAdmin } from '../utils/permissions';
 
 import { getTasks, deleteTask } from '../services/taskService';
-import { getProjects } from '../services/ProjectService';
+import { getProjects } from '../services/projectService';
 
 const fetchTasks = async () => {
   const res = await fetch('http://localhost:3000/tasks');

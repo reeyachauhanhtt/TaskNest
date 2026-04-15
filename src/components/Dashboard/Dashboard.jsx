@@ -8,7 +8,7 @@ import CreateProjectModal from '../CreateProjectModal/CreateProjectModal';
 import Cards from './DashboardCards/Cards';
 import ProjectsPreview from './ProjectsPreview/ProjectsPreview';
 
-import { getProjects, createProject } from '../../services/ProjectService';
+import { getProjects, createProject } from '../../services/projectService';
 import { getTasks } from '../../services/taskService';
 
 export default function Dashboard() {
