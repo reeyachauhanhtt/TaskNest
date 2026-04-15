@@ -8,7 +8,7 @@ export default function useAuth() {
 
   async function login(formData) {
     const res = await fetch(
-      `http://localhost:3000/users?email=${formData.email}`,
+      `${import.meta.env.VITE_API_URL}/users?email=${formData.email}`,
     );
 
     const users = await res.json();
@@ -38,7 +38,7 @@ export default function useAuth() {
 
   async function signup(formData) {
     const resCheck = await fetch(
-      `http://localhost:3000/users?email=${formData.email}`,
+      `${import.meta.env.VITE_API_URL}/users?email=${formData.email}`,
     );
 
     const existing = await resCheck.json();
@@ -60,7 +60,7 @@ export default function useAuth() {
       role: formData.role || 'member',
     };
 
-    const res = await fetch('http://localhost:3000/users', {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

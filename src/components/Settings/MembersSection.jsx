@@ -16,12 +16,12 @@ export default function MembersSection() {
 
   useEffect(() => {
     // fetch users
-    fetch('http://localhost:3000/users')
+    fetch(`${import.meta.env.VITE_API_URL}/users`)
       .then((res) => res.json())
       .then(setUsers);
 
     // fetch projects
-    fetch('http://localhost:3000/projects')
+    fetch(`${import.meta.env.VITE_API_URL}/projects`)
       .then((res) => res.json())
       .then((data) => {
         setProjects(data);
@@ -88,11 +88,14 @@ export default function MembersSection() {
 
     const updatedMembers = [...selectedProject.members, user.id];
 
-    await fetch(`http://localhost:3000/projects/${selectedProject.id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ members: updatedMembers }),
-    });
+    await fetch(
+      `${import.meta.env.VITE_API_URL}/projects/${selectedProject.id}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ members: updatedMembers }),
+      },
+    );
 
     window.location.reload();
   };
@@ -109,14 +112,17 @@ export default function MembersSection() {
 
     const updatedAdmins = selectedProject.admins.filter((id) => id !== userId);
 
-    await fetch(`http://localhost:3000/projects/${selectedProject.id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        members: updatedMembers,
-        admins: updatedAdmins,
-      }),
-    });
+    await fetch(
+      `${import.meta.env.VITE_API_URL}/projects/${selectedProject.id}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          members: updatedMembers,
+          admins: updatedAdmins,
+        }),
+      },
+    );
 
     setIsModalOpen(false);
     setSelectedUser(null);
@@ -135,14 +141,17 @@ export default function MembersSection() {
 
     const updatedAdmins = selectedProject.admins.filter((id) => id !== userId);
 
-    await fetch(`http://localhost:3000/projects/${selectedProject.id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        members: updatedMembers,
-        admins: updatedAdmins,
-      }),
-    });
+    await fetch(
+      `${import.meta.env.VITE_API_URL}/projects/${selectedProject.id}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          members: updatedMembers,
+          admins: updatedAdmins,
+        }),
+      },
+    );
 
     window.location.reload();
   };

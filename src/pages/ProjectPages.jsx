@@ -7,11 +7,8 @@ import classes from './ProjectsPage.module.css';
 import ConfirmModal from '../components/common/ConfirmModal';
 import CreateProjectModal from '../components/CreateProjectModal/CreateProjectModal';
 
-const fetchProjects = async () => {
-  const res = await fetch('http://localhost:3000/projects');
-  if (!res.ok) throw new Error('Failed to fetch projects');
-  return res.json();
-};
+import { getProjects } from '../services/projectService';
+import { getTasks } from '../services/taskService';
 
 export default function ProjectsPage() {
   const queryClient = useQueryClient();
@@ -26,15 +23,9 @@ export default function ProjectsPage() {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
-  const fetchTasks = async () => {
-    const res = await fetch('http://localhost:3000/tasks');
-    if (!res.ok) throw new Error('Failed to fetch tasks');
-    return res.json();
-  };
-
   const { data: tasks = [] } = useQuery({
     queryKey: ['tasks'],
-    queryFn: fetchTasks,
+    queryFn: getTasks,
   });
 
   //  Debounce search
@@ -53,7 +44,7 @@ export default function ProjectsPage() {
     error,
   } = useQuery({
     queryKey: ['projects'],
-    queryFn: fetchProjects,
+    queryFn: getProjects,
   });
 
   // Sort
@@ -124,7 +115,7 @@ export default function ProjectsPage() {
 
   const confirmDelete = async () => {
     try {
-      await fetch(`http://localhost:3000/projects/${deleteId}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/projects/${deleteId}`, {
         method: 'DELETE',
       });
 

@@ -7,14 +7,14 @@ import TaskModal from '../Tasks/TaskModal';
 import classes from './KanbanBoard.module.css';
 import useAuth from '../../hooks/Authentication';
 
-const fetchTasks = async (projectId) => {
-  const res = await fetch(`http://localhost:3000/tasks?projectId=${projectId}`);
-  return res.json();
-};
+import {
+  getTasksByProject,
+  updateTaskStatus,
+} from '../../services/taskService';
+import { createActivity } from '../../services/activityService';
 
 export default function KanbanBoard({ projectId }) {
   const user = useAuth();
-
   const queryClient = useQueryClient();
 
   const [open, setOpen] = useState(false);
@@ -22,20 +22,12 @@ export default function KanbanBoard({ projectId }) {
 
   const { data: tasks = [] } = useQuery({
     queryKey: ['tasks', projectId],
-    queryFn: () => fetchTasks(projectId),
+    queryFn: () => getTasksByProject(projectId),
     enabled: !!projectId,
   });
 
   const updateMutation = useMutation({
-    mutationFn: async ({ id, newStatus }) => {
-      const res = await fetch(`http://localhost:3000/tasks/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus }),
-      });
-
-      return res.json();
-    },
+    mutationFn: ({ id, newStatus }) => updateTaskStatus(id, newStatus),
 
     onMutate: async ({ id, newStatus }) => {
       await queryClient.cancelQueries(['tasks']);
@@ -71,10 +63,6 @@ export default function KanbanBoard({ projectId }) {
         String(t.assignedTo) === userId,
     );
   }, [tasks, projectId, userId]);
-
-  // console.log('projectId:', projectId);
-  // console.log('tasks:', tasks);
-  // console.log('filtered:', projectTasks);
 
   if (!projectTasks.length) {
     return <p style={{ padding: '20px' }}>No tasks found</p>;
@@ -125,15 +113,11 @@ export default function KanbanBoard({ projectId }) {
       newStatus,
     });
 
-    await fetch('http://localhost:3000/activities', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        taskId: draggableId,
-        userId: user.user.id,
-        action: `moved task to ${newStatus}`,
-        createdAt: new Date().toISOString(),
-      }),
+    await createActivity({
+      taskId: draggableId,
+      userId: user.user.id,
+      action: `moved task to ${newStatus}`,
+      createdAt: new Date().toISOString(),
     });
   }
 

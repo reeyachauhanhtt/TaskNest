@@ -1,12 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
+import { getTasks, getTasksByProject } from '../services/taskService';
 
 export const useTasks = (projectId) => {
   return useQuery({
     queryKey: ['tasks', projectId],
-    queryFn: () =>
-      projectId
-        ? getTasks(projectId)
-        : fetch('http://localhost:3000/tasks').then((res) => res.json()),
-    enabled: projectId ? true : true,
+    queryFn: () => (projectId ? getTasksByProject(projectId) : getTasks()),
   });
 };

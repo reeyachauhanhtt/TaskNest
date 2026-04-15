@@ -7,27 +7,8 @@ import useAuth from '../../hooks/Authentication';
 import classes from './TaskModal.module.css';
 import MemberSelect from '../common/MemberSelect';
 
-const addTaskAPI = async (task) => {
-  const res = await fetch('http://localhost:3000/tasks', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(task),
-  });
-
-  if (!res.ok) throw new Error('Failed to add task');
-  return res.json();
-};
-
-const updateTaskAPI = async (task) => {
-  const res = await fetch(`http://localhost:3000/tasks/${task.id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(task),
-  });
-
-  if (!res.ok) throw new Error('Failed to update task');
-  return res.json();
-};
+import { createTask, updateTask } from '../../services/taskService';
+import { createActivity } from '../../services/activityService';
 
 export default function TaskModal({
   onClose,
@@ -77,18 +58,15 @@ export default function TaskModal({
     }));
   }
 
+  //  ADD TASK
   const addMutation = useMutation({
-    mutationFn: addTaskAPI,
+    mutationFn: createTask,
     onSuccess: async (newTask) => {
-      await fetch('http://localhost:3000/activities', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          taskId: newTask.id,
-          userId: user.id,
-          action: 'created task',
-          createdAt: new Date().toISOString(),
-        }),
+      await createActivity({
+        taskId: newTask.id,
+        userId: user.id,
+        action: 'created task',
+        createdAt: new Date().toISOString(),
       });
 
       queryClient.invalidateQueries(['tasks']);
@@ -96,18 +74,15 @@ export default function TaskModal({
     },
   });
 
+  //  UPDATE TASK
   const updateMutation = useMutation({
-    mutationFn: updateTaskAPI,
+    mutationFn: updateTask,
     onSuccess: async (updatedTask) => {
-      await fetch('http://localhost:3000/activities', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          taskId: updatedTask.id,
-          userId: user.id,
-          action: 'updated task',
-          createdAt: new Date().toISOString(),
-        }),
+      await createActivity({
+        taskId: updatedTask.id,
+        userId: user.id,
+        action: 'updated task',
+        createdAt: new Date().toISOString(),
       });
 
       queryClient.invalidateQueries(['tasks']);

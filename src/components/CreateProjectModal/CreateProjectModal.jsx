@@ -3,7 +3,7 @@ import { useQueryClient, useMutation } from '@tanstack/react-query';
 
 import Modal from '../Modal/Modal';
 import classes from './CreateProjectModal.module.css';
-import { createProject, updateProject } from '../../services/ProjectService';
+import { createProject, updateProject } from '../../services/projectService';
 import { useUsers } from '../../hooks/useUser';
 import MemberSelect from '../common/MemberSelect';
 

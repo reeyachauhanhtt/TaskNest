@@ -60,12 +60,14 @@ export default function ProfileSection() {
         bio: form.bio,
       };
 
-      const res = await fetch(`http://localhost:3000/users/${user.id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedUser),
-      });
-
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/users/${user.id}`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedUser),
+        },
+      );
       const text = await res.text();
 
       let data;

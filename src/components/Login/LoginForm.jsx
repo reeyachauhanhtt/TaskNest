@@ -30,7 +30,7 @@ export default function LoginForm() {
 
       try {
         const res = await fetch(
-          `http://localhost:3000/users?email=${emailValue}`,
+          `${import.meta.env.VITE_API_URL}/users?email=${emailValue}`,
         );
         const data = await res.json();
 

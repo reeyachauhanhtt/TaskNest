@@ -23,7 +23,7 @@ export default function LogoutSection() {
   // DELETE ACCOUNT
   const handleDelete = async () => {
     try {
-      await fetch(`http://localhost:3000/users/${user.id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/users/${user.id}`, {
         method: 'DELETE',
       });
 

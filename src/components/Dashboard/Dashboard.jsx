@@ -8,17 +8,8 @@ import CreateProjectModal from '../CreateProjectModal/CreateProjectModal';
 import Cards from './DashboardCards/Cards';
 import ProjectsPreview from './ProjectsPreview/ProjectsPreview';
 
-const fetchProjects = async () => {
-  const res = await fetch('http://localhost:3000/projects');
-  if (!res.ok) throw new Error('Failed to fetch projects');
-  return res.json();
-};
-
-const fetchTasks = async () => {
-  const res = await fetch('http://localhost:3000/tasks');
-  if (!res.ok) throw new Error('Failed to fetch tasks');
-  return res.json();
-};
+import { getProjects, createProject } from '../../services/ProjectService';
+import { getTasks } from '../../services/taskService';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -31,7 +22,7 @@ export default function Dashboard() {
     error: projectsErr,
   } = useQuery({
     queryKey: ['projects'],
-    queryFn: fetchProjects,
+    queryFn: getProjects,
   });
 
   const {
@@ -41,7 +32,7 @@ export default function Dashboard() {
     error: tasksErr,
   } = useQuery({
     queryKey: ['tasks'],
-    queryFn: fetchTasks,
+    queryFn: getTasks,
   });
 
   if (projectsLoading || tasksLoading) return <p>Loading dashboard...</p>;
@@ -50,11 +41,7 @@ export default function Dashboard() {
   if (tasksError) return <p>{tasksErr.message}</p>;
 
   async function handleAddProject(project) {
-    await fetch('http://localhost:3000/projects', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(project),
-    });
+    await createProject(project);
   }
 
   return (
@@ -63,7 +50,6 @@ export default function Dashboard() {
         <div className={classes.main}>
           <div className={classes.container}>
             <Cards projects={projects} tasks={tasks} />
-
             <ProjectsPreview projects={projects} tasks={tasks} />
           </div>
         </div>

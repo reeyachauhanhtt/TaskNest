@@ -10,17 +10,8 @@ import { useUsers } from '../hooks/useUser';
 import useAuth from '../hooks/Authentication';
 import TaskCommentsModal from '../components/Tasks/TaskCommentsModal';
 
-const fetchTasks = async () => {
-  const res = await fetch('http://localhost:3000/tasks');
-  if (!res.ok) throw new Error('Failed to fetch tasks');
-  return res.json();
-};
-
-const fetchProjects = async () => {
-  const res = await fetch('http://localhost:3000/projects');
-  if (!res.ok) throw new Error('Failed to fetch projects');
-  return res.json();
-};
+import { getTasks, deleteTask } from '../services/taskService';
+import { getProjects } from '../services/projectService';
 
 function getDueStatus(dueDate) {
   if (!dueDate) return 'none';
@@ -74,7 +65,7 @@ export default function MyTasksPage() {
     error: tasksErr,
   } = useQuery({
     queryKey: ['tasks'],
-    queryFn: fetchTasks,
+    queryFn: getTasks,
   });
 
   const {
@@ -84,7 +75,7 @@ export default function MyTasksPage() {
     error: projectsErr,
   } = useQuery({
     queryKey: ['projects'],
-    queryFn: fetchProjects,
+    queryFn: getProjects,
   });
 
   // FIRST → edit logic
@@ -169,7 +160,7 @@ export default function MyTasksPage() {
     .filter((g) => g.tasks.length > 0);
 
   const deleteMutation = useMutation({
-    mutationFn: (id) => deleteTaskAPI(id),
+    mutationFn: deleteTask,
     onSuccess: () => {
       queryClient.invalidateQueries(['tasks']);
       setShowConfirm(false);

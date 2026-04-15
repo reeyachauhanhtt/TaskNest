@@ -1,7 +1,9 @@
 import classes from './Header.module.css';
+
 import useAuth from '../../../hooks/Authentication';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { getProjects } from '../../../services/ProjectService';
 
 export default function Header({ onCreate }) {
   const { user } = useAuth();
@@ -11,10 +13,7 @@ export default function Header({ onCreate }) {
 
   const { data: projects = [] } = useQuery({
     queryKey: ['projects'],
-    queryFn: async () => {
-      const res = await fetch('http://localhost:3000/projects');
-      return res.json();
-    },
+    queryFn: getProjects,
   });
 
   const project = projects.find((p) => String(p.id) === id);

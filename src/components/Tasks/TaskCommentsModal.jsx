@@ -4,11 +4,11 @@ import { useUsers } from '../../hooks/useUser';
 import classes from './TaskCommentsModal.module.css';
 import useAuth from '../../hooks/Authentication';
 
-const fetchComments = async (taskId) => {
-  const res = await fetch(`http://localhost:3000/comments?taskId=${taskId}`);
-  const data = await res.json();
-  return Array.isArray(data) ? data : [];
-};
+import { getCommentsByTask, addComment } from '../../services/commentsService';
+import {
+  createActivity,
+  getActivitiesByTask,
+} from '../../services/activityService';
 
 export default function TaskCommentsModal({ task, onClose }) {
   const [message, setMessage] = useState('');
@@ -25,71 +25,47 @@ export default function TaskCommentsModal({ task, onClose }) {
         ? users.users
         : [];
 
-  // console.log('SAFE USERS:', safeUsers);
-
-  //COMMENT QUERY
+  //  COMMENTS QUERY
   const { data: comments = [] } = useQuery({
     queryKey: ['comments', task.id],
-    queryFn: () => fetchComments(task.id),
+    queryFn: () => getCommentsByTask(task.id),
     refetchInterval: 3000,
   });
 
-  //ACTIVITY QUERY
+  //  ACTIVITIES QUERY
   const { data: activities = [] } = useQuery({
     queryKey: ['activities', task.id],
-    queryFn: () => fetchActivities(task.id),
+    queryFn: () => getActivitiesByTask(task.id),
     refetchInterval: 3000,
   });
 
+  //  COMBINED FEED
   const combinedFeed = [
     ...comments.map((c) => ({ ...c, type: 'comment' })),
     ...activities.map((a) => ({ ...a, type: 'activity' })),
   ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  //COMMENTS
-  const addComment = useMutation({
-    mutationFn: async (comment) => {
-      const res = await fetch('http://localhost:3000/comments', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(comment),
-      });
-
-      return res.json();
-    },
+  //  ADD COMMENT
+  const addCommentMutation = useMutation({
+    mutationFn: addComment,
     onSuccess: async () => {
-      await fetch('http://localhost:3000/activities', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          taskId: task.id,
-          userId: user.id,
-          action: 'commented on task',
-          createdAt: new Date().toISOString(),
-        }),
+      await createActivity({
+        taskId: task.id,
+        userId: user.id,
+        action: 'commented on task',
+        createdAt: new Date().toISOString(),
       });
 
       queryClient.invalidateQueries(['comments', task.id]);
+      queryClient.invalidateQueries(['activities', task.id]);
     },
   });
 
-  //ACTIVITY
-
-  const fetchActivities = async (taskId) => {
-    const res = await fetch(
-      `http://localhost:3000/activities?taskId=${taskId}`,
-    );
-    const data = await res.json();
-    return Array.isArray(data) ? data : [];
-  };
-
-  //HANDLERS
+  //  HANDLER
   const handleSubmit = () => {
-    // console.log('SUBMIT:', message);
-
     if (!message.trim()) return;
 
-    addComment.mutate({
+    addCommentMutation.mutate({
       taskId: task.id,
       userId: user.id,
       message,

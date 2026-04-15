@@ -11,6 +11,9 @@ import useAuth from '../hooks/Authentication';
 import TaskCommentsModal from '../components/Tasks/TaskCommentsModal';
 import { isProjectMember, isProjectAdmin } from '../utils/permissions';
 
+import { getTasks, deleteTask } from '../services/taskService';
+import { getProjects } from '../services/ProjectService';
+
 const fetchTasks = async () => {
   const res = await fetch('http://localhost:3000/tasks');
   if (!res.ok) throw new Error('Failed to fetch tasks');
@@ -73,7 +76,7 @@ export default function ProjectDetailsPage() {
     error: tasksErr,
   } = useQuery({
     queryKey: ['tasks'],
-    queryFn: fetchTasks,
+    queryFn: getTasks,
   });
 
   const {
@@ -83,7 +86,7 @@ export default function ProjectDetailsPage() {
     error: projectsErr,
   } = useQuery({
     queryKey: ['projects'],
-    queryFn: fetchProjects,
+    queryFn: getProjects,
   });
 
   const searchRef = useRef();
@@ -119,7 +122,7 @@ export default function ProjectDetailsPage() {
   const isAdmin = isProjectAdmin(project, user?.id);
 
   const deleteMutation = useMutation({
-    mutationFn: (id) => deleteTaskAPI(id),
+    mutationFn: deleteTask,
     onSuccess: () => {
       queryClient.invalidateQueries(['tasks']);
       setShowConfirm(false);
