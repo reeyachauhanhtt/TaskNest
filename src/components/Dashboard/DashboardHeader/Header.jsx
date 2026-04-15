@@ -3,7 +3,7 @@ import classes from './Header.module.css';
 import useAuth from '../../../hooks/Authentication';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { getProjects } from '../../../services/ProjectService';
+import { getProjects } from '../../../services/projectService';
 
 export default function Header({ onCreate }) {
   const { user } = useAuth();
